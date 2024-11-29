@@ -1,5 +1,8 @@
 <script setup lang="ts">
+	import { ref } from 'vue'
+
 	import { useRouter } from 'vue-router'
+	import { useUserStore } from '@/store/userStore'
 
 	import AuthTemplate from '@/components/templates/AuthTemplate.vue'
 
@@ -8,8 +11,17 @@
 	import { Input } from 'shadcn/input'
 
 	const router = useRouter()
+	const { changeNickname } = useUserStore()
+
+	const nickname = ref('')
+
+	const handleModel = (value: string) => {
+		nickname.value = value
+	}
 
 	const handleButton = () => {
+		changeNickname(nickname.value)
+
 		router.push('/')
 	}
 </script>
@@ -23,7 +35,14 @@
 					<CardDescription>Введите свой никнейм для игры</CardDescription>
 				</CardHeader>
 				<CardContent class="grid gap-4">
-					<Input id="username" type="text" placeholder="Никнейм" required />
+					<Input
+						id="username"
+						type="text"
+						placeholder="Никнейм"
+						required
+						:modelValue="nickname"
+						@update:modelValue="handleModel"
+					/>
 				</CardContent>
 				<CardFooter>
 					<Button class="w-full" @click="handleButton">Войти</Button>
