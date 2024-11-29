@@ -9,12 +9,7 @@
 </script>
 
 <template>
-	<ShadAvatar
-		:class="props.class"
-		:size="props.size"
-		:shape="props.shape"
-		@click="$emit('click')"
-	>
+	<ShadAvatar :class="props.class" :size="props.size" :shape="props.shape" @click="$emit('click')">
 		<slot />
 	</ShadAvatar>
 </template>

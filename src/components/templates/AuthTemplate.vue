@@ -1,8 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+	import Titlebar from '@/components/organisms/Titlebar.vue'
+</script>
 
 <template>
 	<div class="flex h-full">
-		<main class="flex justify-center items-center w-full h-full">
+		<Titlebar />
+		<main class="w-full h-full">
 			<slot />
 		</main>
 	</div>

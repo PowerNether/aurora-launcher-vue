@@ -1,9 +1,11 @@
 <script setup lang="ts">
+	import Titlebar from '@/components/organisms/Titlebar.vue'
 	import Sidebar from '@/components/organisms/Sidebar.vue'
 </script>
 
 <template>
 	<div class="flex h-full">
+		<Titlebar />
 		<Sidebar />
 		<main class="w-full h-full">
 			<slot />
