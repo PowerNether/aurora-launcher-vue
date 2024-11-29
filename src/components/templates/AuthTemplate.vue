@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import Titlebar from '@/components/organisms/Titlebar.vue'
+	import Titlebar from '@/components/organisms/TitleBar.vue'
 </script>
 
 <template>

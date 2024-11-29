@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import Titlebar from '@/components/organisms/Titlebar.vue'
+	import Titlebar from '@/components/organisms/TitleBar.vue'
 	import Sidebar from '@/components/organisms/Sidebar.vue'
 </script>
 
@@ -7,7 +7,7 @@
 	<div class="flex h-full">
 		<Titlebar />
 		<Sidebar />
-		<main class="w-full h-full">
+		<main class="relative w-full h-full">
 			<slot />
 		</main>
 	</div>

@@ -11,7 +11,7 @@
 </script>
 
 <template>
-	<div class="fixed top-0 left-0 flex w-full p-2" style="-webkit-app-region: drag">
+	<div class="fixed top-0 left-0 z-[1] flex w-full p-2" style="-webkit-app-region: drag">
 		<WindowControls style="-webkit-app-region: no-drag" @collapse="collapse" @close="close" />
 	</div>
 </template>

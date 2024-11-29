@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { ref } from 'vue'
+	import { ref, type Ref } from 'vue'
 
 	import { useRouter } from 'vue-router'
 	import { useUserStore } from '@/store/userStore'
@@ -13,7 +13,7 @@
 	const router = useRouter()
 	const { changeNickname } = useUserStore()
 
-	const nickname = ref('')
+	const nickname: Ref<string> = ref('')
 
 	const handleModel = (value: string) => {
 		nickname.value = value
