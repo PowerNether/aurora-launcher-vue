@@ -2,11 +2,11 @@
 	import WindowControls from '@/components/molecules/WindowControls.vue'
 
 	const collapse = () => {
-		window.ipcRenderer?.collapse()
+		window.ipcRenderer.invoke('app:collapse')
 	}
 
 	const close = () => {
-		window.ipcRenderer?.close()
+		window.ipcRenderer.invoke('app:close')
 	}
 </script>
 

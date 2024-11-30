@@ -12,7 +12,6 @@ dist
 dist-ssr
 dist-electron
 *.local
-bun.lockb
 
 # Editor directories and files
 .vscode/*
@@ -24,3 +23,4 @@ bun.lockb
 *.njsproj
 *.sln
 *.sw?
+bun.lockb

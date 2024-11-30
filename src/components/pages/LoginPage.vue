@@ -2,16 +2,17 @@
 	import { ref, type Ref } from 'vue'
 
 	import { useRouter } from 'vue-router'
-	import { useUserStore } from '@/store/userStore'
+	import { useUserStore } from '@/store'
 
 	import AuthTemplate from '@/components/templates/AuthTemplate.vue'
 
+	// Refactor this
 	import { Button } from 'shadcn/button'
 	import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from 'shadcn/card'
 	import { Input } from 'shadcn/input'
 
 	const router = useRouter()
-	const { changeNickname } = useUserStore()
+	const { authUser } = useUserStore()
 
 	const nickname: Ref<string> = ref('')
 
@@ -19,10 +20,9 @@
 		nickname.value = value
 	}
 
-	const handleButton = () => {
-		changeNickname(nickname.value)
-
-		router.push('/')
+	const handleButton = async () => {
+		const isAuthed: boolean = await authUser(nickname.value)
+		if (isAuthed) router.push('/')
 	}
 </script>
 

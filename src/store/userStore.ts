@@ -2,20 +2,27 @@ import { ref, type Ref } from 'vue'
 import { defineStore } from 'pinia'
 
 interface User {
-	nickname: string
+	accessToken: string
+	userUUID: string
+	username: string
 }
 
 export const useUserStore = defineStore('user', () => {
 	const user: Ref<User> = ref({
-		nickname: '',
+		accessToken: '',
+		userUUID: '',
+		username: '',
 	})
 
-	const changeNickname = (name: string) => {
-		user.value.nickname = name
+	const authUser = async (name: string) => {
+		const response = await window.ipcRenderer.invoke('app:auth', { login: name, password: '' })
+		user.value = response.data.result
+
+		return true
 	}
 
 	return {
 		user,
-		changeNickname,
+		authUser,
 	}
 })
