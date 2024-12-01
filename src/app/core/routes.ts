@@ -4,7 +4,7 @@ import HomePage from '@/components/pages/HomePage.vue'
 import LoginPage from '@/components/pages/LoginPage.vue'
 import ServerPage from '@/components/pages/ServerPage.vue'
 
-import { useUserStore } from '@/store/userStore'
+import { useUserStore } from '@/stores/userStore'
 
 const routes = [
 	{

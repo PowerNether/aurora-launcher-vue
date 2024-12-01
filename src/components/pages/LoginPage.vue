@@ -2,7 +2,7 @@
 	import { ref, type Ref } from 'vue'
 
 	import { useRouter } from 'vue-router'
-	import { useUserStore } from '@/store'
+	import { useUserStore } from '@/stores'
 
 	import AuthTemplate from '@/components/templates/AuthTemplate.vue'
 

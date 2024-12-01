@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import { onMounted } from 'vue'
-	import { useUserStore, useServersStore } from '@/store'
+	import { useUserStore, useServersStore } from '@/stores'
 	import Avatar from '@/components/atoms/Avatar.vue'
 
 	const { user } = useUserStore()

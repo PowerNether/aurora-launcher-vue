@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { ref, onMounted } from 'vue'
 	import { useRoute } from 'vue-router'
-	import { useServersStore } from '@/store'
+	import { useServersStore } from '@/stores'
 
 	import PageTemplate from '@/components/templates/PageTemplate.vue'
 	import BackgroundImage from '@/components/atoms/BackgroundImage.vue'
