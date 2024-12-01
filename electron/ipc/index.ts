@@ -8,7 +8,8 @@ export class IPCManager {
 	static init() {
 		ipcMain.handle('app:close', WindowHandlers.closeWindow)
 		ipcMain.handle('app:collapse', WindowHandlers.collapseWindow)
-		ipcMain.handle('app:auth', (event, data) => AuthHandlers.auth(event, data))
 		ipcMain.handle('app:servers', (event) => ServersHandlers.getServers(event))
+
+		ipcMain.handle('app:auth', (event, data) => AuthHandlers.auth(event, data))
 	}
 }
