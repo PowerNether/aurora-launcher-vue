@@ -14,7 +14,7 @@ const routes = [
 		beforeEnter: () => {
 			const { user } = useUserStore()
 
-			if (user.username.length === 0) {
+			if (user === null) {
 				return { name: 'Login' }
 			}
 		},

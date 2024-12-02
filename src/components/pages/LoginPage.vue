@@ -1,27 +1,15 @@
 <script setup lang="ts">
-	import { ref, type Ref } from 'vue'
-
 	import { useRouter } from 'vue-router'
 	import { useUserStore } from '@/stores'
 
 	import AuthTemplate from '@/components/templates/AuthTemplate.vue'
-
-	// Refactor this
-	import { Button } from 'shadcn/button'
-	import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from 'shadcn/card'
-	import { Input } from 'shadcn/input'
+	import AuthForm from '@/components/organisms/AuthForm.vue'
 
 	const router = useRouter()
 	const { authUser } = useUserStore()
 
-	const nickname: Ref<string> = ref('')
-
-	const handleModel = (value: string) => {
-		nickname.value = value
-	}
-
-	const handleButton = async () => {
-		const isAuthed: boolean = await authUser(nickname.value)
+	const handleAuth = async (login: string) => {
+		const isAuthed: boolean = await authUser(login)
 		if (isAuthed) router.push('/')
 	}
 </script>
@@ -29,25 +17,7 @@
 <template>
 	<AuthTemplate>
 		<div class="flex justify-center items-center h-full">
-			<Card class="w-full max-w-sm">
-				<CardHeader>
-					<CardTitle class="text-2xl">Авторизация</CardTitle>
-					<CardDescription>Введите свой никнейм для игры</CardDescription>
-				</CardHeader>
-				<CardContent class="grid gap-4">
-					<Input
-						id="username"
-						type="text"
-						placeholder="Никнейм"
-						required
-						:modelValue="nickname"
-						@update:modelValue="handleModel"
-					/>
-				</CardContent>
-				<CardFooter>
-					<Button class="w-full" @click="handleButton">Войти</Button>
-				</CardFooter>
-			</Card>
+			<AuthForm @submit="handleAuth" />
 		</div>
 	</AuthTemplate>
 </template>
