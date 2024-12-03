@@ -1,19 +1,22 @@
 <script setup lang="ts">
-	import { ref, type Ref } from 'vue'
+	import { onMounted, ref, type Ref } from 'vue'
 	import { Button } from 'shadcn/button'
 	import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from 'shadcn/card'
 	import { Input } from 'shadcn/input'
 
-	const emits = defineEmits<{
-		(e: 'submit', login: string): void
-	}>()
+	const emits = defineEmits<{ (e: 'submit', login: string): void }>()
 
 	const login: Ref<string> = ref('')
 
 	const handleSubmit = (e: Event) => {
 		e.preventDefault()
+		localStorage.setItem('username', login.value)
 		emits('submit', login.value)
 	}
+
+	onMounted(() => {
+		login.value = localStorage.getItem('username') || ''
+	})
 </script>
 
 <template>

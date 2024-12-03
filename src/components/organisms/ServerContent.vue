@@ -1,6 +1,6 @@
 <script lang="ts" setup>
+	import { Button } from 'shadcn/button'
 	import ServerInfo from '@/components/molecules/ServerInfo.vue'
-	import Button from '@/components/atoms/Button.vue'
 
 	const props = defineProps<{ title: string; description: string }>()
 	const play = () => {

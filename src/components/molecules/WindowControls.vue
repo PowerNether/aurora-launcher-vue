@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import Button from '@/components/atoms/Button.vue'
+	import { Button } from 'shadcn/button'
 	import { Minus, X } from 'lucide-vue-next'
 </script>
 

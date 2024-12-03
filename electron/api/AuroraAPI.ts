@@ -17,12 +17,25 @@ interface IAuroraAPIResponseError {
 }
 
 class AuroraAPI {
-	private socket: WebSocket
+	private url: string
+	private socket: WebSocket | null = null
 	private messages: Map<string, (response: IAuroraAPIResponse | IAuroraAPIResponseError) => void> = new Map()
 
 	constructor(url: string) {
-		this.socket = new WebSocket(url)
-		this.socket.on('message', (data: WebSocket.RawData) => this.sockerHandleMessage(data))
+		this.url = url
+
+		this.connect()
+	}
+
+	private connect() {
+		this.socket = new WebSocket(this.url)
+
+		this.socket.on('close', () => setTimeout(() => this.connect(), 5000))
+		this.socket.on('message', (data: WebSocket.RawData) => this.handleMessage(data))
+	}
+
+	private get checkSocketConnection() {
+		return this.socket?.readyState === WebSocket.OPEN
 	}
 
 	public send(method: string, params: object) {
@@ -30,21 +43,16 @@ class AuroraAPI {
 			const id = nanoid()
 			const request: IAuroraAPIRequest = { id, method, params }
 
-			this.messages.set(id, resolve)
-
-			this.socket.send(JSON.stringify(request))
-
-			setTimeout(() => {
-				if (this.messages.has(id)) {
-					this.messages.delete(id)
-				}
-
-				reject(new Error('Timeout: no response from server'))
-			}, 10000)
+			if (this.checkSocketConnection) {
+				this.messages.set(id, resolve)
+				this.socket?.send(JSON.stringify(request))
+			} else {
+				reject(new Error('WebSocket: no response from server'))
+			}
 		})
 	}
 
-	private sockerHandleMessage(data: WebSocket.RawData) {
+	private handleMessage(data: WebSocket.RawData) {
 		const response: string = data.toString()
 		const responseJSON = JSON.parse(response)
 
@@ -57,4 +65,4 @@ class AuroraAPI {
 	}
 }
 
-export const api = new AuroraAPI('ws://192.168.1.202:1370/ws')
+export const api = new AuroraAPI('ws://192.168.1.202:1370')

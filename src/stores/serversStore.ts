@@ -7,6 +7,7 @@ export const useServersStore = defineStore('servers', () => {
 
 	const getServers: ServersGetFunction = async () => {
 		const { data }: ServersApiResponse = await window.ipcRenderer.invoke('app:servers')
+
 		servers.value = data.result
 	}
 

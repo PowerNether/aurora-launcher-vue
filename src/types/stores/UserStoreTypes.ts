@@ -5,7 +5,7 @@ export type User = {
 }
 
 type ApiResponse<T> = {
-	status: boolean
+	success: boolean
 	data: T
 }
 

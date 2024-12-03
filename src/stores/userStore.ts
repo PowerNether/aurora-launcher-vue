@@ -5,23 +5,25 @@ import { User, UserApiResponse, UserAuthenticationFunction } from '@/types/store
 export const useUserStore = defineStore('user', () => {
 	const user: Ref<User | null> = ref(null)
 
-	const authUser: UserAuthenticationFunction = async (login) => {
+	const userAuthorize: UserAuthenticationFunction = async (login) => {
 		try {
-			const { status, data }: UserApiResponse = await window.ipcRenderer.invoke('app:auth', {
+			const { success, data }: UserApiResponse = await window.ipcRenderer.invoke('app:auth', {
 				login,
 				password: '',
 			})
 
-			if (status) {
+			if (success) {
 				user.value = data.result
+				return success
+			} else {
+				new Error('Authication is failed')
+				return false
 			}
-
-			return status
 		} catch (error) {
-			console.error('Authentication failed:', (error as Error).message)
+			console.error('IPC:', (error as Error).message)
 			return false
 		}
 	}
 
-	return { user, authUser }
+	return { user, userAuthorize }
 })

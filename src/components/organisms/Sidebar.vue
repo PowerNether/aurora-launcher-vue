@@ -1,13 +1,13 @@
 <script setup lang="ts">
 	import { onMounted } from 'vue'
 	import { useUserStore, useServersStore } from '@/stores'
-	import Avatar from '@/components/atoms/Avatar.vue'
+	import { Avatar } from 'shadcn/avatar'
 
 	const { user } = useUserStore()
-	const { servers, getServers } = useServersStore()
+	const serversStore = useServersStore()
 
-	onMounted(async () => {
-		getServers()
+	onMounted(() => {
+		serversStore.getServers()
 	})
 </script>
 
@@ -15,7 +15,7 @@
 	<aside class="flex flex-col justify-between h-full p-4">
 		<Avatar shape="square" />
 
-		<template v-for="server in servers" :key="server.profileUUID">
+		<template v-for="server in serversStore.servers" :key="server.profileUUID">
 			<RouterLink :to="'/server/' + server.profileUUID">
 				<Avatar shape="square">
 					{{ server.title.slice(0, 1) }}
@@ -23,6 +23,6 @@
 			</RouterLink>
 		</template>
 
-		<Avatar shape="square">{{ user.username.slice(0, 1) }}</Avatar>
+		<Avatar shape="square">{{ user?.username.slice(0, 1) || 'U' }}</Avatar>
 	</aside>
 </template>
