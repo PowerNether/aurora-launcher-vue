@@ -7,7 +7,7 @@
 	<div class="flex h-full">
 		<Titlebar />
 		<Sidebar />
-		<main class="relative w-full h-full">
+		<main class="w-full h-full">
 			<slot />
 		</main>
 	</div>

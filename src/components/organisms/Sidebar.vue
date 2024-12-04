@@ -12,13 +12,13 @@
 </script>
 
 <template>
-	<aside class="flex flex-col justify-between h-full p-4">
+	<aside class="flex flex-col justify-between p-4 m-4 bg-background rounded-lg">
 		<Avatar shape="square" />
 
 		<template v-for="server in serversStore.servers" :key="server.profileUUID">
-			<RouterLink :to="'/server/' + server.profileUUID">
+			<RouterLink :to="'/server/' + server?.profileUUID">
 				<Avatar shape="square">
-					{{ server.title.slice(0, 1) }}
+					{{ server?.title.slice(0, 1) }}
 				</Avatar>
 			</RouterLink>
 		</template>
