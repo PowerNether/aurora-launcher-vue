@@ -1,8 +1,10 @@
 export type Server = {
-	ip: string
-	port: number
 	profileUUID: string
 	title: string
+	description?: string
+	image?: string
+	ip: string
+	port: number
 }
 
 type ApiResponse<T> = {

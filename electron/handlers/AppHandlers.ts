@@ -1,13 +1,14 @@
 import { BrowserWindow } from 'electron'
 
-export class WindowHandlers {
-	static collapseWindow() {
+class AppHandlers {
+	public collapseWindow() {
 		const window = BrowserWindow.getFocusedWindow()
 		if (window) window.minimize()
 	}
-
-	static closeWindow() {
+	public closeWindow() {
 		const window = BrowserWindow.getFocusedWindow()
 		if (window) window.close()
 	}
 }
+
+export default new AppHandlers()

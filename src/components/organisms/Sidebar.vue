@@ -3,7 +3,7 @@
 	import { useUserStore, useServersStore } from '@/stores'
 	import { Avatar } from 'shadcn/avatar'
 
-	const { user } = useUserStore()
+	const userStore = useUserStore()
 	const serversStore = useServersStore()
 
 	onMounted(() => {
@@ -12,7 +12,7 @@
 </script>
 
 <template>
-	<aside class="flex flex-col justify-between p-4 m-4 bg-background rounded-lg">
+	<aside class="flex flex-col justify-between p-4 m-4 mr-2 bg-background rounded-lg">
 		<Avatar shape="square" />
 
 		<template v-for="server in serversStore.servers" :key="server.profileUUID">
@@ -23,6 +23,6 @@
 			</RouterLink>
 		</template>
 
-		<Avatar shape="square">{{ user?.username.slice(0, 1) || 'U' }}</Avatar>
+		<Avatar shape="square">{{ userStore.user?.username.slice(0, 1) || 'U' }}</Avatar>
 	</aside>
 </template>
