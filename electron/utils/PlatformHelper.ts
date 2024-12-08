@@ -1,6 +1,6 @@
 import { Platform } from '../config/constants'
 
-class PlatformUtil {
+class PlatformHelper {
 	public isMac: boolean
 	public isLinux: boolean
 	public isUnix: boolean
@@ -14,4 +14,4 @@ class PlatformUtil {
 	}
 }
 
-export default new PlatformUtil()
+export default new PlatformHelper()

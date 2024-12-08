@@ -4,7 +4,7 @@ import fs from 'fs'
 
 import { app } from 'electron'
 
-import PlatformUtil from '../utils/platform'
+import PlatformHelper from '../utils/PlatformHelper'
 import { config } from '../config/config'
 
 class StorageService {
@@ -23,7 +23,7 @@ class StorageService {
 	}
 
 	private get platformDirectory() {
-		if (PlatformUtil.isMac) {
+		if (PlatformHelper.isMac) {
 			return path.resolve(app.getPath('userData'), '../', config.path)
 		}
 		return path.resolve(homedir(), '.' + config.path)

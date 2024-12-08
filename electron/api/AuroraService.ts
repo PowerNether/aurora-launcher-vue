@@ -1,12 +1,12 @@
 import WebSocketService from './WebSocketService'
 
 class AuroraService {
-	public async authorization(payload: object) {
+	public async authorization(params: object) {
 		try {
-			const response = await WebSocketService.sendMessage({ method: 'auth', ...payload })
-			return { success: true, data: response }
+			const response = await WebSocketService.sendMessage({ method: 'auth', params })
+			return response
 		} catch (error) {
-			return { success: false, message: (error as Error).message }
+			return { error: (error as Error).message }
 		}
 	}
 
