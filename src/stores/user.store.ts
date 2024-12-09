@@ -28,7 +28,7 @@ export const useUserStore = defineStore('user', () => {
 
 	const user: Ref<User | null> = ref(JSON.parse(localStorage.getItem('user') as string))
 
-	const login = async (login: string) => {
+	const login = async (login: string): Promise<void> => {
 		try {
 			const response: Response = await window.ipcRenderer.invoke('app:auth', { login, password: '' })
 			if (response?.error) {
@@ -46,7 +46,7 @@ export const useUserStore = defineStore('user', () => {
 		}
 	}
 
-	const logout = () => {
+	const logout = (): void => {
 		user.value = null
 		localStorage.removeItem('user')
 		router.push('/login')
