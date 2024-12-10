@@ -13,9 +13,9 @@ class AuroraService {
 	public async servers() {
 		try {
 			const response = await WebSocketService.sendMessage({ method: 'servers' })
-			return { success: true, data: response }
+			return response
 		} catch (error) {
-			return { success: false, message: (error as Error).message }
+			return { error: (error as Error).message }
 		}
 	}
 }

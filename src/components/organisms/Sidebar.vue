@@ -14,8 +14,12 @@
 	const userStore = useUserStore()
 	const serversStore = useServersStore()
 
+	const logoutHandler = () => {
+		userStore.logout()
+	}
+
 	onMounted(() => {
-		serversStore.getServers()
+		serversStore.fatchServers()
 	})
 </script>
 
@@ -39,7 +43,7 @@
 				</DropdownMenuLabel>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem>Настройки</DropdownMenuItem>
-				<DropdownMenuItem @click="userStore.logout">Выйти</DropdownMenuItem>
+				<DropdownMenuItem @click="logoutHandler">Выйти</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>
 	</aside>

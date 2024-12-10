@@ -7,8 +7,8 @@ class IPCService {
 	public registerIPCHandlers() {
 		ipcMain.handle('app:close', AppHandlers.closeWindow)
 		ipcMain.handle('app:collapse', AppHandlers.collapseWindow)
-		ipcMain.handle('app:auth', (_, data) => AuroraService.authorization(data))
-		ipcMain.handle('app:servers', () => AuroraService.servers())
+		ipcMain.handle('api:auth', (_, data) => AuroraService.authorization(data))
+		ipcMain.handle('api:servers', () => AuroraService.servers())
 	}
 }
 

@@ -2,25 +2,16 @@ import { ref, Ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useRouter } from 'vue-router'
 import { useToast } from 'shadcn/toast/use-toast'
+import { Response } from '@/types/response.type'
 
 type User = {
 	username: string
 	userUUID: string
 	accessToken: string
+	isAlex?: boolean
+	skinUrl?: string
+	capeUrl?: string
 }
-
-type ResponseBase = {
-	id: string
-}
-type ResponseLogin = ResponseBase & {
-	result: User
-	error: never
-}
-type ResponseError = ResponseBase & {
-	result: never
-	error: string
-}
-type Response = ResponseLogin | ResponseError
 
 export const useUserStore = defineStore('user', () => {
 	const router = useRouter()
@@ -30,10 +21,8 @@ export const useUserStore = defineStore('user', () => {
 
 	const login = async (login: string): Promise<void> => {
 		try {
-			const response: Response = await window.ipcRenderer.invoke('app:auth', { login, password: '' })
-			if (response?.error) {
-				throw new Error('Произошла ошибка, попробуйте позже')
-			}
+			const response: Response<User> = await window.ipcRenderer.invoke('api:auth', { login, password: '' })
+			if (response?.error) throw new Error('Произошла ошибка, попробуйте позже')
 
 			const result: User = response.result
 
