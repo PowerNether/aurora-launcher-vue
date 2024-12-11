@@ -1,15 +1,32 @@
-# Aurora Launcher
+# Vurora Launcher
 
-Переписка лаунчера Aurora на Vue + Shadcn
+Разработка лаунчера на базе [Aurora Launcher](https://github.com/AuroraTeam/Launcher) с Electron Builder и Vue JS
 
-## Технологии
+## База проекта
 
--   Bun
+Build tools
+
 -   Vite
--   Electron
 -   Electron Builder
--   Vue 3
--   Shadcn
--   Tailwind
--   TypeScript
+
+Backend
+
+-   Electron
+
+Frontend
+
+-   Vue
+-   Vue Router
+-   Pinia
+
+UI Kit
+
+-   Shadcn (Tailwind)
+
+Code Style
+
 -   Prettier
+
+Организация кода
+
+-   Atomic Design (Frontend)
